@@ -1,7 +1,2 @@
-export type UserQuestion = {
-    question: string;
-};
-export type upperText = {
-    text: string;
-};
+export {};
 //# sourceMappingURL=main.d.ts.map
