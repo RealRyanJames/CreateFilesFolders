@@ -20,6 +20,10 @@ class App {
   }
 }
 
+const isEmpty = (e: string) => {
+  return e === "";
+}
+
 function main() {
   const app = new App();
 
@@ -27,6 +31,10 @@ function main() {
     const q: UserQuestion = {
       question: "Enter File Or Folder Name: ",
     };
+    
+    if (isEmpty(q.question)) {
+      console.log("Empty".toUpperCase());
+    }
 
     if (q.question.startsWith("/Folder")) {
       if (fs.existsSync(q.question)) {
