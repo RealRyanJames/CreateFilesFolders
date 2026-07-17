@@ -1,4 +1,5 @@
-import fs from "fs";
+import { question } from "readline-sync";
+import { fs1 } from "../imports/imports.js";
 
 export type UserQuestion = {
   question: string;
@@ -7,8 +8,6 @@ export type UserQuestion = {
 export type upperText = {
   text: string;
 };
-
-import { question } from "readline-sync";
 
 function getUserAnswer(questionUser: string): UserQuestion | string {
   return question(questionUser.toString());
@@ -22,6 +21,10 @@ class App {
 
 const isEmpty = (e: string) => {
   return e === "";
+};
+
+function FileNameCreation(name: string) {
+  return fs1.writeFileSync(name, "");
 }
 
 function main() {
@@ -31,19 +34,18 @@ function main() {
     const q: UserQuestion = {
       question: "Enter File Or Folder Name: ",
     };
-    
+
     if (isEmpty(q.question)) {
       console.log("Empty".toUpperCase());
     }
 
     if (q.question.startsWith("/Folder")) {
-      if (fs.existsSync(q.question)) {
-        fs.mkdirSync(q.question);
+      if (fs1.existsSync(q.question)) {
+        fs1.mkdirSync(q.question);
       }
     } else if (q.question.startsWith("/File")) {
-      const fileName = question("Enter File Name: ").toUpperCase();
-      fs.writeFileSync(fileName, "");
-      console.log("Created File Called: " + fileName);
+      FileNameCreation(q.question);
+      console.log("Created File Called: " + q.question);
     }
 
     app.setup(q.question);
